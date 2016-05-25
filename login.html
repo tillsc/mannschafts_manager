@@ -1,0 +1,21 @@
+<html>
+ <head>
+  <title>%titel%</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+  <script language='javascript'>
+   function setFocus() {
+    for (var i = 0; i < document.forms[0].elements.length; i++) {
+     var elem = document.forms[0].elements[i];
+     if ((elem.type == 'text' || elem.type == 'password') && elem.value == '') {
+      elem.focus();  
+      break;
+     }
+    }
+   }
+  </script>
+ </head>
+ <body onload='setFocus()'>
+  <h1>%titel%</h1>
+  %main%
+ </body>
+</html>

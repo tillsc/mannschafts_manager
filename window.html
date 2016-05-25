@@ -1,0 +1,25 @@
+<html>
+ <head>
+  <title>%titel%</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+  <script language="javascript"><!--
+   var editwndw2;
+
+   function editFenster(url) {
+     editwndw2 = window.open(url, 'editFenster2', 'top=100,left=100,width=600,height=400,resizable=yes,scrollbars=yes,dependent=yes');
+     editwndw2.focus();
+   }
+
+   function doParentReload() {
+    if (opener && opener.reload)
+      opener.reload();
+   }
+  --></script>
+ </head>
+ <body>
+  <h2>%titel%</h2>
+  <div>
+  %main%
+  </div>
+ </body>
+</html>

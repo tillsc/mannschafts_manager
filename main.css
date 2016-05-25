@@ -1,0 +1,67 @@
+table.menue {
+  background-color: FFFFCC;
+  text-align: center;
+}
+
+table.fuss {
+  background-color: FFFFCC;
+  font-size: 80%;
+}
+
+a:link {text-decoration: none}
+a:visited {text-decoration: none}
+a:hover {text-decoration: underline}
+
+table.daten {
+  background-color: EEEEEE;
+}
+
+th {
+  text-align: left;
+  font-size: 80%;
+  background-color:FFFFCC;
+  vertical-align: top;
+}
+th.vergangen {
+  background-color:FFFFEE;
+}
+
+td {
+  font-size: 90%;
+  vertical-align: top;
+}
+
+.footer {
+  background-color: DDDDDD;
+}
+
+.footer_vergangen {
+  background-color: EEEEEE;
+}
+
+.angemeldet {
+  background-color: CCFFCC;
+}
+
+.abgemeldet {
+  background-color: FFCCCC;
+}
+
+.angemeldet_vergangen {
+  background-color: EEFFEE;
+}
+
+.abgemeldet_vergangen {
+  background-color: FFEEEE;
+}
+
+h1, h2, h3, body, td {
+  font-family: Arial, Helvetica, Sans
+}
+
+*.popup {
+  border: solid 1px blue; 
+  background-color: ffffcc;
+  padding: 3px;
+}
+  

@@ -1,0 +1,65 @@
+<html>
+ <head>
+  <title>%titel%</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+  <meta http-equiv="content-type" content="text/html; charset=latin1" />
+  <script language="javascript"><!--
+   var editwndw;
+
+   function editFenster(url) {
+     editwndw = window.open(url, 'editFenster', 'top=50,left=50,width=750,height=600,resizable=yes,scrollbars=yes,dependent=yes');
+     editwndw.focus();
+   }
+
+   function getOffs() {
+    if (document.all) {
+     return document.body.scrollTop;
+    }
+    else {
+     return window.pageYOffset;
+    }
+   }
+
+   function reload() {
+    selfuri = '%selfuri%';
+    offs = getOffs();
+    if (selfuri != '') {
+     self.location.href = selfuri + '&offs=' + offs;
+    }
+   }
+   
+   var lastPopupHint;
+   
+   function showPopupHint(id) {
+    element = document.getElementById(id);
+    if (lastPopupHint && element != lastPopupHint) {
+     lastPopupHint.style.visibility='hidden';
+    }
+    if (element) {
+     element.style.visibility='visible';
+    }
+    lastPopupHint = element;
+   }
+
+   function hidePopupHint() {
+     
+   }
+  --></script>
+ </head>
+ <body onLoad="if (%offs% > 0) {window.scrollTo(0, %offs%)}">
+  <h1>%titel%</h1>
+  <div>
+   <table border=1 cellspacing="0" cellpadding="3" width="100%" class="menue">
+    <tr><td width='25%'><a href="index.php">Hauptseite</a></td><td width='25%'><a href="anwesenheitsliste.php">Anwesenheitsliste</a></td><td width='25%'><a href="mannschaftsliste.php">Mannschaftsliste</a></td><td><a href="index.php?logout=1">Ausloggen</a></td></tr>
+   </table>
+   <div style='margin: 20px'>
+   %main%
+   </div>
+   <br>
+   <br>
+   <table border=1 cellspacing="0" cellpadding="1" width="100%" class="fuss">
+    <tr><td width='50%'><a href="#top">Nach oben</a></td><td align='right'><a href="mailto:maik.roehrs@online.de">Webmaster</a></td></tr>
+   </table>
+  </div>
+ </body>
+</html>
