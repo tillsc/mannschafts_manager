@@ -65,7 +65,7 @@ $g->out.= "<h3>Termine im ".$g->getMonthName($monat)." $jahr</h3>";
 if (is_array($termine)) {
   $g->out.= "<table border=1 cellspacing=0 cellpadding=5 class='daten'><tr><th>&nbsp;</th>";
   foreach ($termine as $id => $felder) {
-    $lab =  "<small>{$felder['Teilnahmetyp']}</small><br><a href='termin.php?id=$id'>{$felder['Name']}</a>".($g->zugriffsLevel >= ZUGRIFFSLEVEL_TRAINER ? "&nbsp;<a href=\"javascript:editFenster('termindaten.php?edit=$id')\"><img src='edit.gif' border=0></a>&nbsp;<a href=\"javascript:editFenster('termindaten.php?del=$id')\"><img src='del.gif' border=0></a>" : "");
+    $lab =  "<small>{$felder['Teilnahmetyp']}</small><br><a href='termin.php?id=$id'>{$felder['Name']}</a>".($g->zugriffsLevel >= ZUGRIFFSLEVEL_TRAINER ? "&nbsp;<a href=\"javascript:editFenster('termindaten.php?edit=$id')\"><img src='edit.gif' border=0></a>&nbsp;<a href=\"javascript:editFenster('termindaten.php?del=$id')\"><img src='del.gif' border=0></a>&nbsp;<a href=\"javascript:editFenster('termindaten.php?deactivate=$id')\"><img src='deactivate.gif' border=0></a>" : "");
     $zus = $g->getDateString($felder['DatumVon']) == $g->getDateString($felder['DatumBis']) ? "<br>".$g->getTimeString($felder['DatumVon'])." - ".$g->getTimeString($felder['DatumBis']) : "&nbsp;".$g->getTimeString($felder['DatumVon'])."&nbsp;Uhr -<br>".$g->getDayNameShort($felder['DatumBis'])."&nbsp;".$g->getDateString($felder['DatumBis'])."&nbsp;".$g->getTimeString($felder['DatumBis']);
     $class = $felder['Vergangen'] ? ' class="vergangen"' : "";
     $g->out.= "<th$class>$lab<br><small>".$g->getDayNameShort($felder['DatumVon'])."&nbsp;".$g->getDateString($felder['DatumVon'])."$zus&nbsp;Uhr</small></th>";
