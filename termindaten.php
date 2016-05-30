@@ -83,6 +83,38 @@ elseif ($_GET['del'] > 0) {
     $g->out.= "</form>";
   }
 }
+elseif ($_GET['deactivate'] > 0) {
+  $g->out.= "<h3>alle für Termin abmelden ?</h3>";
+  if ($_POST['checked'] > 0) {
+    $sql_insert  = " insert vb_abmeldungen(terminID,MitgliedsID, Datum) ";
+    $sql_insert .= " select ";
+    $sql_insert .= "     t.ID, ";
+    $sql_insert .= "     m.ID AS MitgliedsID, ";
+    $sql_insert .= "     now()" ;
+    $sql_insert .= "  from vb_termine t ";
+    $sql_insert .= "     INNER JOIN vb_termintypen ty ";
+    $sql_insert .= "     INNER JOIN vb_mitgliederteilnahmetypen mtty ";
+    $sql_insert .= "     INNER JOIN vb_mitglieder m ";
+    $sql_insert .= "     LEFT JOIN vb_abmeldungen a ON a.TerminID = t.ID AND a.MitgliedsID = m.ID ";
+    $sql_insert .= "   WHERE ";
+    $sql_insert .= "     t.Id = '{$_GET['deactivate']}'  AND "; // filter 1 auf PK TerminID
+    $sql_insert .= "     t.TeamID = '{$g->teamID}' AND ";       // filter 2 auf das Team
+    $sql_insert .= "     ISNULL(a.ID) AND ";                    // filter 3 nur die noch angemeldeten.
+    $sql_insert .= "     m.TeamID = t.TeamID AND ";
+    $sql_insert .= "     m.AktiverSpieler = 1 AND ";            // filter 4 auf die aktiven Spieler
+    $sql_insert .= "     ty.ID = t.TermintypID AND ";
+    $sql_insert .= "     mtty.TeilnahmetypID = ty.TeilnahmetypID AND ";
+    $sql_insert .= "     mtty.MitgliedsID = m.ID ";
+    $res = $g->query($sql_insert);
+    $g->out.= "Neue Abmeldungen wurden für Termin='{$_GET['deactivate']}' und TeamID='{$g->teamID}' angelegt.";
+    $g->out.= "<script language='javascript'>doParentReload();window.close()</script>";
+  }
+  else {
+    $g->out.= "<form action='".$g->getSelfURI()."' method='POST'><input type='hidden' name='checked' value='1'>\n";
+    $g->out.= "Bist Du sicher?<br><br><input type='submit' value='Ja'> <input type='button' value='Nö' onclick='window.close()'>\n";
+    $g->out.= "</form>";
+  }
+}
 else {
   doDie("Parameterfehler", "Kein Parameter spezifiziert.");
 }
